@@ -1,13 +1,14 @@
-version: "3.9"
-
 services:
   api-gateway:
     image: node:20-alpine
     working_dir: /app
     volumes:
       - .:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
-    command: sh -c "npm install && npx ts-node-dev src/index.ts"
+    command: sh -c "npm install && npm run dev"
     environment:
       - NODE_ENV=development
+    stdin_open: true
+    tty: true
